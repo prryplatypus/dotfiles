@@ -1,3 +1,15 @@
 gcl() {
     git switch $1 && git pull && git branch | grep -v "^\* " | grep -ve "^\s*$(echo $1)$" | xargs git branch -D
 }
+
+
+newvenv() {
+  local venv_name="${1:-.venv}"
+  python3 -m venv "$venv_name"
+}
+
+
+act() {
+  local venv_dir="${1:-.venv}"
+  source "$venv_dir/bin/activate"
+}
